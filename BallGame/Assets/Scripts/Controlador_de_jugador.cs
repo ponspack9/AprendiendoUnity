@@ -1,34 +1,36 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Controlador_de_jugador : MonoBehaviour
 {
     private Rigidbody fisicasDelJugador;
 
     private float movimientoEjeX;
+    private float movimientoEjeY;
 
-    // Crear variable para el movimiento en el eje Y
+    public float speed = 10f;
 
+    private int years = 9;
+    private int eyes = 2;
 
-    public float speed = 9.9f;
 
     // Start se llama cuando empieza el objeto
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
+        fisicasDelJugador = GetComponent<Rigidbody>();
     }
 
     void OnMove(InputValue movementValue)
     {
         Vector2 movementVector = movementValue.Get<Vector2>();
-        movementX = movementVector.x; 
-        movementY = movementVector.y;
+        movimientoEjeX = movementVector.x; 
+        movimientoEjeY = movementVector.y;
     }
 
-    // Update se llama cada fotograma del juego
-    void Update()
-    {
-        
+    private void FixedUpdate() {
+        Vector3 movement = new Vector3 (movimientoEjeX, 0.0f, movimientoEjeY);
+        fisicasDelJugador.AddForce(movement*speed);
     }
 }
