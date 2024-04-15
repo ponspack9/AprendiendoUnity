@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -12,8 +13,6 @@ public class Controlador_de_jugador : MonoBehaviour
 
     public float speed = 10f;
 
-    private int years = 9;
-    private int eyes = 2;
 
 
     // Start se llama cuando empieza el objeto

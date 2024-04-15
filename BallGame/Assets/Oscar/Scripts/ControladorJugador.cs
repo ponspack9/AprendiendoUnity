@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -9,6 +10,9 @@ public class ControladorJugador : MonoBehaviour
     private float movementX;
     private float movementY;
     public float speed = 0;
+
+    private int score = 0;
+    public TextMeshProUGUI scoreTextUI;
 
     void Start()
     {
@@ -25,5 +29,16 @@ public class ControladorJugador : MonoBehaviour
     private void FixedUpdate() {
         Vector3 movement = new Vector3 (movementX, 0.0f, movementY);
         rb.AddForce(movement*speed);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Premio"))
+        {
+            other.gameObject.SetActive(false);
+            score += 100;
+            scoreTextUI.text = "SCORE: " + score.ToString();
+
+        }
     }
 }
