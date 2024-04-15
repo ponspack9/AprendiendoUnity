@@ -7,10 +7,13 @@ public class Paredes : MonoBehaviour
     public float x = 0;
     public float z = 0;
 
-    private float force = 1000.0f;
+    private float force = 10.0f;
+    
 
     private void OnCollisionEnter(Collision other) 
     {
-        other.gameObject.GetComponent<Rigidbody>().AddForce(new Vector3(force * x, 0.0f, force*z), ForceMode.Impulse);
-    }
+        
+        other.gameObject.GetComponent<Rigidbody>().AddForce(new Vector3(force * x, 0.0f, force*z), ForceMode.Impulse);   
+        }
+    
 }
