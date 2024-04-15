@@ -7,7 +7,7 @@ public class Paredes : MonoBehaviour
     public float x = 0;
     public float z = 0;
 
-    private float force = 100.0f;
+    private float force = 1000.0f;
 
     private void OnCollisionEnter(Collision other) 
     {
