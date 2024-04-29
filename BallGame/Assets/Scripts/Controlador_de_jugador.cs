@@ -13,7 +13,9 @@ public class Controlador_de_jugador : MonoBehaviour
 
     public float speed = 10f;
 
+    private int marcador = 0;
 
+    public TextMeshProUGUI marcadorTextoEditor;
 
     // Start se llama cuando empieza el objeto
     void Start()
@@ -31,5 +33,32 @@ public class Controlador_de_jugador : MonoBehaviour
     private void FixedUpdate() {
         Vector3 movement = new Vector3 (movimientoEjeX, 0.0f, movimientoEjeY);
         fisicasDelJugador.AddForce(movement*speed);
+    }
+
+    private void OnTriggerEnter(Collider other) {
+        // Si chocamos con el cubo_verde
+        if (other.gameObject.CompareTag("cubo_verde")){
+            // Si entra aqui es que hemos chocado
+            // Desactivamos el cubo_verde/
+            other.gameObject.SetActive(false);
+            // Sumamos 1 al marcador
+            marcador += 2;
+            // Actualizamos el marcador
+            ActualizarMarcador();
+        }
+        if( other.gameObject.CompareTag("cubo_rojo") ) {
+            other.gameObject.SetActive(false); 
+            marcador += 1;
+            ActualizarMarcador();
+        }
+    }
+
+    private void OnCollisionEnter(Collision other) {
+        if( other.gameObject.CompareTag("cubo_trampa") ) {
+             Debug.Log("Hemos chocado con el cubo trampa");
+        }
+    }
+private void ActualizarMarcador(){
+        marcadorTextoEditor.text = "Marcador: " + marcador.ToString();
     }
 }

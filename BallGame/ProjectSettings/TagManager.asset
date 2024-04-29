@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Premio
+  - cubo_trampa
+  - cubo_verde
+  - cubo_rojo
   layers:
   - Default
   - TransparentFX
