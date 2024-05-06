@@ -12,8 +12,10 @@ public class Controlador_de_jugador : MonoBehaviour
     private float movimientoEjeY;
 
     public float speed = 10f;
-
+    private int  nivel = 1; 
     private int marcador = 0;
+
+    public GameObject barreraNivel1;
 
     public TextMeshProUGUI marcadorTextoEditor;
 
@@ -50,6 +52,13 @@ public class Controlador_de_jugador : MonoBehaviour
             other.gameObject.SetActive(false); 
             marcador += 1;
             ActualizarMarcador();
+        }
+
+        if(nivel == 1 && marcador > 14){ 
+            // hemos completado el nivel 1
+            // abrimos la barrera
+            barreraNivel1.SetActive(false);
+            nivel = 2;
         }
     }
 
