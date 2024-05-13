@@ -15,6 +15,8 @@ public class Controlador_de_jugador : MonoBehaviour
     private int  nivel = 1; 
     private int marcador = 0;
 
+
+    public float fuerzaSalto = 40.0f;
     public GameObject barreraNivel1;
 
     public TextMeshProUGUI marcadorTextoEditor;
@@ -35,6 +37,10 @@ public class Controlador_de_jugador : MonoBehaviour
     private void FixedUpdate() {
         Vector3 movement = new Vector3 (movimientoEjeX, 0.0f, movimientoEjeY);
         fisicasDelJugador.AddForce(movement*speed);
+
+        if (Input.GetKeyDown(KeyCode.Space)){
+            fisicasDelJugador.AddForce(new Vector3(0.0f, fuerzaSalto, 0.0f), ForceMode.Impulse);
+        }
     }
 
     private void OnTriggerEnter(Collider other) {
