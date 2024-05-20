@@ -8,12 +8,16 @@ public class Controlador_de_jugador : MonoBehaviour
 {
     private Rigidbody fisicasDelJugador;
 
+    public GameObject spawnPoint = null;
+
     private float movimientoEjeX;
     private float movimientoEjeY;
 
     public float speed = 10f;
     private int  nivel = 1; 
     private int marcador = 0;
+
+    private bool tocando_suelo = false;
 
 
     public float fuerzaSalto = 40.0f;
@@ -38,8 +42,10 @@ public class Controlador_de_jugador : MonoBehaviour
         Vector3 movement = new Vector3 (movimientoEjeX, 0.0f, movimientoEjeY);
         fisicasDelJugador.AddForce(movement*speed);
 
-        if (Input.GetKeyDown(KeyCode.Space)){
+        // Saltar
+        if (Input.GetKeyDown(KeyCode.Space) && tocando_suelo){
             fisicasDelJugador.AddForce(new Vector3(0.0f, fuerzaSalto, 0.0f), ForceMode.Impulse);
+            tocando_suelo = false;
         }
     }
 
@@ -71,6 +77,18 @@ public class Controlador_de_jugador : MonoBehaviour
     private void OnCollisionEnter(Collision other) {
         if( other.gameObject.CompareTag("cubo_trampa") ) {
              Debug.Log("Hemos chocado con el cubo trampa");
+        }
+        if(other.gameObject.CompareTag("suelo"))
+        {
+            tocando_suelo = true;
+        }
+        if (other.gameObject.CompareTag("muerte"))
+        {
+            transform.position = spawnPoint.transform.position + new Vector3(0,5,0);
+        }
+        if (other.gameObject.CompareTag("spawn"))
+        {
+            spawnPoint = other.gameObject;
         }
     }
 private void ActualizarMarcador(){

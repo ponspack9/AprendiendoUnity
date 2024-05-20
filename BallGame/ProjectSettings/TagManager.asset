@@ -8,6 +8,9 @@ TagManager:
   - cubo_trampa
   - cubo_verde
   - cubo_rojo
+  - suelo
+  - muerte
+  - spawn
   layers:
   - Default
   - TransparentFX
